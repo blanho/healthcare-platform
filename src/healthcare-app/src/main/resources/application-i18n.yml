@@ -1,0 +1,21 @@
+spring:
+  messages:
+    # i18n configuration (SB004)
+    basename: messages,ValidationMessages
+    encoding: UTF-8
+    cache-duration: 3600 # 1 hour in production
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+  
+  # Set default locale
+  web:
+    locale: en
+    locale-resolver: accept_header
+
+# Supported locales
+healthcare:
+  i18n:
+    supported-locales:
+      - en  # English
+      - ja  # Japanese
+    default-locale: en

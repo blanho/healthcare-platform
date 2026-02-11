@@ -1,0 +1,208 @@
+# =============================================
+# Healthcare Platform - .gitignore
+# =============================================
+
+# Environment & Secrets
+.env
+.env.local
+.env.production
+*.pem
+*.key
+ssl/
+
+# Large video files (use GIF instead)
+*.mov
+*.mp4
+*.avi
+
+# Scripts and utilities
+scripts/
+
+# =============================================
+# Java / Maven / Spring Boot
+# =============================================
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle (if used)
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# Spring Boot
+spring-boot-*.log
+
+# H2 Database
+*.db
+*.trace.db
+
+# =============================================
+# Node.js / React / Frontend
+# =============================================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Production build
+dist/
+dist-ssr/
+build/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =============================================
+# Docker & Deployment
+# =============================================
+
+# Docker volumes
+docker-compose.override.yml
+.dockerignore
+
+# =============================================
+# Testing & Coverage
+# =============================================
+
+# JaCoCo
+*.exec
+jacoco.xml
+
+# SonarQube
+.sonar/
+.scannerwork/
+
+# =============================================
+# IDE Specific
+# =============================================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Eclipse
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+local.properties
+.loadpath
+.recommenders
+.externalToolBuilders/
+.apt_generated/
+.apt_generated_test/
+.factorypath
+.springBeans
+.sts4-cache
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code
+.vscode/
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# =============================================
+# Temporary & Cache
+# =============================================
+
+# Temp files
+*.tmp
+*.temp
+*.cache
+
+# Package manager cache
+.npm
+.yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# =============================================
+# Application Specific
+# =============================================
+
+# Uploads & User Content
+uploads/
+documents/
+medical-records/
+
+# Backup files
+*.backup
+backup/
+
+# Keep these local only
+.github/prompts/
+.shared/

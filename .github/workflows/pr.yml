@@ -1,0 +1,75 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  pr-check:
+    name: PR Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR title format
+        run: |
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          if [[ ! "$PR_TITLE" =~ ^(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?:\ .+ ]]; then
+            echo "❌ PR title must follow conventional commits format"
+            echo "Examples:"
+            echo "  feat: add patient module"
+            echo "  fix(auth): resolve JWT token expiration"
+            echo "  docs: update API documentation"
+            exit 1
+          fi
+          echo "✅ PR title format is valid"
+
+      - name: Check for merge conflicts
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          if ! git merge-base --is-ancestor origin/${{ github.base_ref }} HEAD; then
+            echo "⚠️ Branch may have merge conflicts with ${{ github.base_ref }}"
+          fi
+
+  size-check:
+    name: PR Size Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check PR size
+        run: |
+          ADDITIONS=$(gh pr view ${{ github.event.pull_request.number }} --json additions -q .additions)
+          DELETIONS=$(gh pr view ${{ github.event.pull_request.number }} --json deletions -q .deletions)
+          TOTAL=$((ADDITIONS + DELETIONS))
+          
+          echo "📊 PR Stats: +$ADDITIONS -$DELETIONS (total: $TOTAL lines)"
+          
+          if [ $TOTAL -gt 1000 ]; then
+            echo "⚠️ Large PR detected. Consider breaking into smaller PRs."
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+  label-pr:
+    name: Auto Label
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Label based on files
+        uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}

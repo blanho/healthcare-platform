@@ -1,0 +1,39 @@
+# Pull Request Labeler Configuration
+# https://github.com/actions/labeler
+
+backend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'src/**/*.java'
+          - 'src/**/pom.xml'
+
+frontend:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'web/**/*.ts'
+          - 'web/**/*.tsx'
+          - 'web/package*.json'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'docs/**/*'
+          - '**/*.md'
+
+infrastructure:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'deploy/**/*'
+          - '**/Dockerfile'
+          - 'docker-compose*.yml'
+
+ci-cd:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '**/pom.xml'
+          - '**/package*.json'
