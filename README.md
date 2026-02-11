@@ -73,7 +73,7 @@ Healthcare Platform is a comprehensive healthcare management system designed for
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-org/healthcare-platform.git
+git clone https://github.com/blanho/healthcare-platform.git
 cd healthcare-platform
 ```
 
